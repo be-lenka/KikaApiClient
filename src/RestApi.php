@@ -17,7 +17,7 @@ class RestApi
 	const DELETE = 'DELETE';
 
 	/** @var string */
-	private $endpoint = 'https://system.fhb.sk/api/v2';
+	private $endpoint = 'https://api.fhb.sk/v3';
 
 	/** @var string */
 	private $appId;
@@ -82,7 +82,7 @@ class RestApi
 
 	public function post($action, array $data)
 	{
-		$result = $this->call(self::POST, $action, $data, self::S201_CREATED);
+		$result = $this->call(self::POST, $action, $data, self::S200_OK);
 		return $result->json;
 	}
 
@@ -116,12 +116,11 @@ class RestApi
 		if ($data) {
 			curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
 		}
-
+		
 		$response = curl_exec($curl);
 		$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		curl_close($curl);
 		$json = json_decode($response);
-
 		if ($httpCode != $code) {
 			$message = isset($json->message) ? $json->message : "Unknown error. Http code {$httpCode}.";
 			throw new RestApiException($message, $httpCode);
@@ -147,7 +146,7 @@ class RestApi
 	private function createToken()
 	{
 		$data = [
-			'appId' => $this->appId,
+			'app_id' => $this->appId,
 			'secret' => $this->secret
 		];
 
