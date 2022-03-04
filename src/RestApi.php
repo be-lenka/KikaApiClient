@@ -1,6 +1,6 @@
 <?php
 
-namespace Kika\ApiClient;
+namespace belenka\FHB\Kika\ApiClient;
 
 
 class RestApi
@@ -180,7 +180,3 @@ class RestApi
 	}
 
 }
-
-
-class RestApiException extends \Exception
-{}

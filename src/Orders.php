@@ -1,6 +1,6 @@
 <?php
 
-namespace Kika\ApiClient;
+namespace belenka\FHB\Kika\ApiClient;
 
 
 class Orders
@@ -15,34 +15,23 @@ class Orders
 		$this->api = $api;
 	}
 
-
 	public function create(array $data)
 	{
-		return $this->api->post('orders', $data);
+		return $this->api->post('order', $data);
 	}
-
 
 	public function update($id, array $data)
 	{
-		return $this->api->put("orders?id=$id", $data);
+		return $this->api->put("order?id=$id", $data);
 	}
-
 
 	public function delete($id)
 	{
-		return $this->api->delete("orders?id=$id");
+		return $this->api->delete("order?id=$id");
 	}
-
-
-	public function anonymization($id)
-	{
-		return $this->api->put("anonymization?id=$id", ['id' => $id]);
-	}
-
 
 	public function read($id)
 	{
-		return $this->api->get("orders?id=$id");
+		return $this->api->get("order?id=$id");
 	}
-
 }

@@ -8,6 +8,8 @@ Production API URL: `https://api.fhb.sk/v3`
 
 Development API URL: `https://api-dev.fhb.sk/v3`
 
+*Library for API v3*
+
 Usage:
 ------
 ```php
@@ -17,14 +19,14 @@ const API_ID  = '5275fe3ca57307bf8cecfb7b08a447c0';
 const SECRET = 'ErYFgUCXWJeINyc89066ed90kcwr28ceta8s1t4a';
 const ENDPOINT = 'https://api-dev.fhb.sk/v3';
 
-$api = new Kika\ApiClient\RestApi(API_ID, SECRET);
+$api = new belenka\FHB\Kika\ApiClient\RestApi(API_ID, SECRET);
 $api->setEndpoint(ENDPOINT);
 ```
 Products
 ---------
 ```php
 
-$products = new Kika\ApiClient\Products($api);
+$products = new belenka\FHB\Kika\ApiClient\Products($api);
 $uniqueId = '123456';
 
 $data = array(
@@ -74,7 +76,7 @@ Orders
 
 ```php
 
-$orders = new Kika\ApiClient\Orders($api);
+$orders = new belenka\FHB\Kika\ApiClient\Orders($api);
 
 $uniqueId = '123456';
 

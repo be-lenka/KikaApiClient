@@ -1,6 +1,6 @@
 <?php
 
-namespace Kika\ApiClient;
+namespace belenka\FHB\Kika\ApiClient;
 
 
 class Products
