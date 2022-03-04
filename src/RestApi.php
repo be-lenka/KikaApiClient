@@ -16,9 +16,11 @@ class RestApi
 	const PATCH = 'PATCH';
 	const DELETE = 'DELETE';
 
-	/** @var string */
-	private $endpoint = 'https://api.fhb.sk/v3';
+	const ENDPOINT_PROD = 'https://api.fhb.sk/v3';
+    const ENDPOINT_DEV = 'https://api-dev.fhb.sk/v3';
 
+	/** @var string */
+	private $endpoint = self::ENDPOINT_PROD;
 	/** @var string */
 	private $appId;
 
