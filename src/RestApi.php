@@ -127,9 +127,11 @@ class RestApi
 			$message = isset($json->message) ? $json->message : "Unknown error. Http code {$httpCode}.";
 			if (isset($json->violations) && is_object($json->violations)) {
 				$message .= ';';
-				foreach (get_object_vars($json->violations) as $violation) {
-					if (isset($violation->message) && isset($violation->code)) {
-						$message .= '(' . $violation->code . ')' . $violation->message . ';';
+				foreach (get_object_vars($json->violations) as $violationGroup) {
+					foreach ($violationGroup as $violation) {
+						if (isset($violation->message) && isset($violation->code)) {
+							$message .= '(' . $violation->code . ')' . $violation->message . ';';
+						}
 					}
 				}
 			}
