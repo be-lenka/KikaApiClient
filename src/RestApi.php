@@ -17,7 +17,7 @@ class RestApi
 	const DELETE = 'DELETE';
 
 	const ENDPOINT_PROD = 'https://api.fhb.sk/v3';
-    const ENDPOINT_DEV = 'https://api-dev.fhb.sk/v3';
+	const ENDPOINT_DEV = 'https://api-dev.fhb.sk/v3';
 
 	/** @var string */
 	private $endpoint = self::ENDPOINT_PROD;
@@ -118,20 +118,28 @@ class RestApi
 		if ($data) {
 			curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
 		}
-		
+
 		$response = curl_exec($curl);
 		$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		curl_close($curl);
 		$json = json_decode($response);
 		if ($httpCode != $code) {
 			$message = isset($json->message) ? $json->message : "Unknown error. Http code {$httpCode}.";
+			if (isset($json->violations) && is_object($json->violations)) {
+				$message .= ';';
+				foreach (get_object_vars($json->violations) as $violation) {
+					if (isset($violation->message) && isset($violation->code)) {
+						$message .= '(' . $violation->code . ')' . $violation->message . ';';
+					}
+				}
+			}
 			throw new RestApiException($message, $httpCode);
 		}
 
 		$this->lastResult = (object)array('httpCode' => $httpCode, 'json' => $json, 'raw' => $response);
 		return $this->lastResult;
 	}
-	
+
 
 	private function login($action)
 	{
@@ -180,5 +188,4 @@ class RestApi
 		curl_setopt($curl, CURLOPT_HEADER, FALSE);
 		return $curl;
 	}
-
 }
