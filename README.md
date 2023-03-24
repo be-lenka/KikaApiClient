@@ -87,38 +87,67 @@ $uniqueId = '123456';
 
 $data = array(
 	'id' => $uniqueId,
-	'name' => 'Martin Novák',
-	'street' => 'Hronská 35',
-	'city' => 'Zvolen',
-	'psc' => '96001',
-	'country' => 'sk',
-	'email' => 'email@example.com',
-	'phone' => '00421900123456',
-	'variableSymbol' => '588988552',
-	'cod' => '54.98',
-	'note' => 'poznamka',
-	'invoiceLink' => 'http://example.com/order/inv123.pdf',
-	'_embedded' => array(
-		'items' =>  array(
-			array(
-				'id' => '123456',
-				'qty' => 3,
-			),
-			array(
-				'id' => '1234567',
-				'qty' => 4,
-			),
-		),
-
-		'notifyLinks' => array(
-			array(
-				'confirmed' => 'http://example.com/api/order/123/confirm',
-				'sent' => 'http://example.com/api/order/123/sent',
-				'delivered' => 'http://example.com/api/order/123/delivered',
-				'returned' => 'http://example.com/api/order/123/returned',
-			),
-		)
-	),
+	'variable_symbol =>'12345',
+	'parcel_service'=> 'dpd',
+	'delivery_point'=>'1234',
+	'cod'=>22.50,
+	'value'=> 22.50,
+	'recipient'=>[
+		'address'=>[
+			'name'=>'john doe',
+			'street'=>'Main street 1',
+			'city'=>'New City',
+			'zip'=>'12345',
+			'province'=>'South',
+			'country'=>'SK'
+		],
+		'contact'=[
+			'email'=>'info@example.com',
+			'phone'=>'421901234567'
+		]
+	],
+	'items'=>[
+		[
+			'id'=>1234,
+			'quantity'=> 2
+		]
+	],
+	'notification'=>[
+		'confirmed'=>'http://localhost',
+		'sent'=>'http://localhost',
+		'delivered'=>'http://localhost',
+		'returned'=>'http://localhost',
+		'ticket_created'=>'http://localhost',
+		'ticket_updated'=>'http://localhost',
+		'ticket_closed'=>'http://localhost',
+	],
+	'invoice'=>'http://localhost/file.pdf',
+	'note' => 'no comment',
+	'note_delivery' => 'no comment',
+	'invoice_detail' => [
+		'number'=>'INV0001',
+		'total'=>22.50,
+		'currency'=>'EUR',
+		'date_of_issue'=>'2023-01-02',
+		'products'=>[
+			[
+				'code'=> 123,
+				'description' =>'socks white 38',
+				'hs_code'=>112233,
+				'value'=>12.50,
+				'quantity'=>1,
+				'country_of_origin'=>'SK'
+			]
+		],
+		'fees'=>[
+			[
+				'type'=>'discount|shipping|other',
+				'description'=>'Shipping Fee',
+				'value'=>1.3
+			]
+		]
+	]
+	
 );
 
 
