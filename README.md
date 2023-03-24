@@ -35,6 +35,11 @@ $data = array(
 	'ean' => '8580000001234',
 	'photoUrl' => 'http://example.com/image.png',
 	'notifyLink' => '"http://example.com/api/product/123/notify',
+	'customs_information'=>[
+	    'hs_code'=>'00112233',
+	    'country_of_origin' => 'SK',
+	    'purchase_price' => 23.50
+	]
 );
 
 try {
